@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOOD MORNING</title>
+
+  <!-- Artistic Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink: #FF66CC;
+      --green: #046B23;
+      --sienna: #A14F00;
+      --black: #111111;
+      --cream: #F5E9D8;
+    }
+
+    body {
+      background: var(--cream);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      padding: 20px;
+    }
+
+    .wire {
+      width: 5px;
+      height: 120px;
+      background: var(--black);
+      margin: auto;
+      border-radius: 10px;
+    }
+
+    .lamp {
+      width: 160px;
+      height: 80px;
+      background: var(--sienna);
+      border-radius: 90px 90px 20px 20px;
+      margin: 0 auto;
+      box-shadow: 0 0 45px var(--pink);
+      transition: 0.4s;
+      border: 4px solid var(--black);
+    }
+
+    .light {
+      width: 270px;
+      height: 250px;
+      background: rgba(255, 102, 204, 0.28);
+      clip-path: polygon(35% 0, 65% 0, 100% 100%, 0 100%);
+      margin: auto;
+      transition: 0.4s;
+    }
+
+    h1 {
+      font-size: 75px;
+      color: var(--pink);
+      font-family: "Tangerine", cursive;
+      font-weight: bold;
+      text-shadow: 2px 2px 2px var(--black);
+      margin: 10px 0;
+      animation: fadeSlide 2s ease-in-out infinite alternate;
+    }
+
+    .quote {
+      max-width: 580px;
+      margin: 15px auto 20px;
+      padding: 20px;
+      color: var(--black);
+      background: rgba(255, 102, 204, 0.18);
+      border: 3px solid var(--green);
+      border-radius: 20px;
+      font-size: 28px;
+      line-height: 1.4;
+      font-family: "Tangerine", cursive;
+      box-shadow: 0 0 20px rgba(161, 79, 0, 0.25);
+      transition: 0.4s;
+
+      /* quote hidden first */
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* quote shows only when light is ON */
+    .on .quote {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0.5;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    input {
+      display: none;
+    }
+
+    label {
+      display: inline-block;
+      width: 75px;
+      height: 38px;
+      background: var(--sienna);
+      border-radius: 30px;
+      position: relative;
+      cursor: pointer;
+      margin-top: 15px;
+      border: 3px solid var(--black);
+      transition: 0.3s;
+    }
+
+    label::before {
+      content: "";
+      width: 28px;
+      height: 28px;
+      background: var(--cream);
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      transition: 0.3s;
+    }
+
+    input:checked + label {
+      background: var(--green);
+    }
+
+    input:checked + label::before {
+      left: 40px;
+    }
+
+    .switch-text {
+      font-size: 18px;
+      color: var(--black);
+      font-weight: bold;
+      margin-top: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* light OFF style */
+    .off .lamp {
+      background: var(--black);
+      box-shadow: none;
+    }
+
+    .off .light {
+      opacity: 0;
+    }
+
+    .off h1 {
+      color: var(--sienna);
+      text-shadow: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 55px;
+      }
+
+      .quote {
+        font-size: 24px;
+        max-width: 90%;
+      }
+
+      .light {
+        width: 230px;
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container on" id="container">
+
+    <div class="wire"></div>
+    <div class="lamp"></div>
+    <div class="light"></div>
+
+    <h1>Good Morning Baby 😘</h1>
+
+    <p class="quote">
+      A little note to remind you that I am so happy to have you.
+      Good morning, baby. You are the cutest girl I have ever seen.
+      Hearing your voice in the morning makes my day, and I appreciate you.
+      So, have a good day and do not stress too much. Keep being the girl you are.
+    </p>
+
+    <p class="switch-text">ON / OFF</p>
+
+    <input type="checkbox" id="switch" checked>
+    <label for="switch"></label>
+
+  </div>
+
+  <script>
+    const lightSwitch = document.getElementById("switch");
+    const container = document.getElementById("container");
+
+    lightSwitch.addEventListener("change", function () {
+      if (this.checked) {
+        container.classList.add("on");
+        container.classList.remove("off");
+      } else {
+        container.classList.add("off");
+        container.classList.remove("on");
+      }
+    });
+  </script>
+
+</body>
+</html>
